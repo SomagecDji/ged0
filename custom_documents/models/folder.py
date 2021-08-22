@@ -20,7 +20,7 @@ class DocumentFolder(models.Model):
                     for id in [group.id for group in  folder.group_ids ]:
                         parent_folder.write({'read_group_ids':[(4,id)]})
         return()
-class SignSendRequest(models.Model):
+"""class SignSendRequest(models.Model):
     _description = 'Sign Send Request'
-    _inherit = 'sign.send.request' 
+    _inherit = 'sign.send.request' """
 
