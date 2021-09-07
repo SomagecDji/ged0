@@ -19,7 +19,8 @@
     # always loaded
     'data': [
         'views/templates.xml',
-        'views/inherit_project_workspace_view.xml'
+        'views/inherit_project_workspace_view.xml',
+        'views/inherit_project_workspace_country_view.xml'
     ],
 
 }
