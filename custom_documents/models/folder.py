@@ -80,6 +80,8 @@ class DocumentFolder(models.Model):
                                                 document_parent_5=document_folder.create({'name':w.name,'parent_folder_id':document_parent_4.id})
                                         
         return {'type': 'ir.actions.act_window_close'}
+    def delete_folders(self):
+        self.env.cr.execute("""delete from documents_folder where create_date > (select NOW() - interval '1' hour)""")
 """class SignSendRequest(models.Model):
     _description = 'Sign Send Request'
     _inherit = 'sign.send.request' """
