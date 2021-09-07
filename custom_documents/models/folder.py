@@ -54,7 +54,7 @@ class DocumentFolder(models.Model):
         main_workspace_id=self.env['documents.folder'].search([('id','=',self.id)]).id
         document_folder=self.env['documents.folder']
         all_subfolders00=self.env['documents.folder'].search([('parent_folder_id','=',main_workspace_id)])
-        document_parent_0=document_folder.create({'name':self.project_name,'parent_folder_id':main_workspace_id.id})
+        document_parent_0=document_folder.create({'name':self.project_name,'parent_folder_id':main_workspace_id})
         document_parent_00=all_subfolders00[1]
         all_subfolders0=self.env['documents.folder'].search([('parent_folder_id','=',document_parent_00.id)])
         if len(all_subfolders0)!=0:
