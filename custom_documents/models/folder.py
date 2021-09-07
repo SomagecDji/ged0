@@ -5,6 +5,7 @@ class DocumentFolder(models.Model):
     _description = 'Document folder'
     _inherit = 'documents.folder' 
     admin_group_ids = fields.Many2many('res.groups',  'documents_folder_admin_groups',string="Groupe d'écriture")
+    project_name=fields.Char('Nom du projet')
     @api.onchange('parent_folder_id')
     def inherit_groups_write(self):
         if self.parent_folder_id:
