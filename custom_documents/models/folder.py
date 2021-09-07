@@ -43,7 +43,7 @@ class DocumentFolder(models.Model):
     def view_inherit_workspace(self):
         form_view = self.env.ref('custom_documents.inherit_workspace_form_view')
         self.ensure_one()
-        return {'name': _('Merci de saisir le nom du projet:'),
+        return {'name': _('Merci de saisir le nom du projet :'),
                 'type': 'ir.actions.act_window',
                 'res_model': 'documents.folder',
                 'view_mode': 'form',
@@ -83,7 +83,7 @@ class DocumentFolder(models.Model):
     def view_inherit_workspace_country(self):
         form_view = self.env.ref('custom_documents.inherit_workspace_country_form_view')
         self.ensure_one()
-        return {'name': _('Merci de saisir le nom du pays:'),
+        return {'name': _('Merci de saisir ces informations :'),
                 'type': 'ir.actions.act_window',
                 'res_model': 'documents.folder',
                 'view_mode': 'form',
