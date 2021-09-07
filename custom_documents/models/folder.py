@@ -91,7 +91,7 @@ class DocumentFolder(models.Model):
                 'res_id': self.id,
                 'target': 'new'}
     def inherit_workspace_country(self):
-        main_workspace_id=self.env['documents.folder'].search([('id','=',)]).id
+        main_workspace_id=self.env['documents.folder'].search([('id','=',1748)]).id
         document_folder=self.env['documents.folder']
         document_parent_0=document_folder.create({'name':self.country_name})
         all_subfolders0=self.env['documents.folder'].search([('parent_folder_id','=',main_workspace_id)])
