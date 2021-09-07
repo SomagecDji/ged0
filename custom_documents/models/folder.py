@@ -53,7 +53,7 @@ class DocumentFolder(models.Model):
     def inherit_workspace(self):
         main_workspace_id=self.env['documents.folder'].search([('id','=',self.id)]).id
         document_folder=self.env['documents.folder']
-        all_subfolders00=self.env['documents.folder'].search([('parent_folder_id','=',main_workspace_id)])
+        all_subfolders_00=self.env['documents.folder'].search([('parent_folder_id','=',main_workspace_id)])
         document_parent_0=document_folder.create({'name':self.project_name,'parent_folder_id':main_workspace_id})
         document_parent_00=all_subfolders_00[0]
         all_subfolders0=self.env['documents.folder'].search([('parent_folder_id','=',document_parent_00.id)])
