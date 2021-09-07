@@ -50,7 +50,7 @@ class DocumentFolder(models.Model):
                 'res_id': self.id,
                 'target': 'new'}
     def inherit_workspace(self):
-        main_workspace_id=self.env['documents.folder'].search([('id','=',3)]).id
+        main_workspace_id=self.env['documents.folder'].search([('id','=',)]).id
         document_folder=self.env['documents.folder']
         document_parent_0=document_folder.create({'name':self.project_name})
         all_subfolders0=self.env['documents.folder'].search([('parent_folder_id','=',main_workspace_id)])
@@ -64,6 +64,21 @@ class DocumentFolder(models.Model):
                         document_folder=self.env['documents.folder']
                         document_parent_2=document_folder.create({'name':j.name,'parent_folder_id':document_parent_1.id})
                         all_subfolders2=self.env['documents.folder'].search([('id','=',j.id)])
+                        if len(all_subfolders2)!=0:
+                            for k in all_subfolders2:
+                                document_folder=self.env['documents.folder']
+                                document_parent_3=document_folder.create({'name':k.name,'parent_folder_id':document_parent_2.id})
+                                all_subfolders3=self.env['documents.folder'].search([('id','=',k.id)])
+                                if len(all_subfolders3)!=0:
+                                    for m in all_subfolders3:
+                                        document_folder=self.env['documents.folder']
+                                        document_parent_4=document_folder.create({'name':m.name,'parent_folder_id':document_parent_3.id})
+                                        all_subfolders4=self.env['documents.folder'].search([('id','=',m.id)])
+                                        if len(all_subfolders4)!=0:
+                                            for w in all_subfolders4:
+                                                document_folder=self.env['documents.folder']
+                                                document_parent_5=document_folder.create({'name':w.name,'parent_folder_id':document_parent_4.id})
+                                        
         return {'type': 'ir.actions.act_window_close'}
 """class SignSendRequest(models.Model):
     _description = 'Sign Send Request'
