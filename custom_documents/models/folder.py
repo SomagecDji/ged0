@@ -62,22 +62,21 @@ class DocumentFolder(models.Model):
                 document_folder=self.env['documents.folder']
                 document_parent_1=document_folder.create({'name':i.name,'sequence':i.sequence,'parent_folder_id':document_parent_0.id})
                 all_subfolders1=self.env['documents.folder'].search([('parent_folder_id','=',i.id)])
-                raise UserError(_(all_subfolders1))
                 if len(all_subfolders1)!=0:
                     for j in all_subfolders1:
                         document_folder=self.env['documents.folder']
                         document_parent_2=document_folder.create({'name':j.name,'sequence':j.sequence,'parent_folder_id':document_parent_1.id})
-                        all_subfolders2=self.env['documents.folder'].search([('id','=',j.id)])
+                        all_subfolders2=self.env['documents.folder'].search([('parent_folder_id','=',j.id)])
                         if len(all_subfolders2)!=0:
                             for k in all_subfolders2:
                                 document_folder=self.env['documents.folder']
                                 document_parent_3=document_folder.create({'name':k.name,'sequence':k.sequence,'parent_folder_id':document_parent_2.id})
-                                all_subfolders3=self.env['documents.folder'].search([('id','=',k.id)])
+                                all_subfolders3=self.env['documents.folder'].search([('parent_folder_id','=',k.id)])
                                 if len(all_subfolders3)!=0:
                                     for m in all_subfolders3:
                                         document_folder=self.env['documents.folder']
                                         document_parent_4=document_folder.create({'name':m.name,'parent_folder_id':document_parent_3.id})
-                                        all_subfolders4=self.env['documents.folder'].search([('id','=',m.id)])
+                                        all_subfolders4=self.env['documents.folder'].search([('parent_folder_id','=',m.id)])
                                         if len(all_subfolders4)!=0:
                                             for w in all_subfolders4:
                                                 document_folder=self.env['documents.folder']
