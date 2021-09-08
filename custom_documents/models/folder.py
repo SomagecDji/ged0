@@ -93,14 +93,14 @@ class DocumentFolder(models.Model):
                 'res_id': self.id,
                 'target': 'new'}
     def inherit_workspace_country(self):
-        main_workspace_id=self.env['documents.folder'].search([('id','=',1748)]).id
+        main_workspace_id=self.env['documents.folder'].search([('id','=',self.id)])
         document_folder=self.env['documents.folder']
-        document_parent_0=document_folder.create({'name':self.country_name})
-        all_subfolders0=self.env['documents.folder'].search([('parent_folder_id','=',main_workspace_id)])
+        document_parent_0=document_folder.create({'name':self.country_name,'sequence':main_workspace_id.sequence+1})
+        all_subfolders0=self.env['documents.folder'].search([('parent_folder_id','=',main_workspace_id.id)])
         if len(all_subfolders0)!=0:
             for t,i in enumerate(all_subfolders0):
                 document_folder=self.env['documents.folder']
-                document_parent_1=document_folder.create({'name':i.name,'parent_folder_id':document_parent_0.id})
+                document_parent_1=document_folder.create({'name':i.name,'sequence':i.sequence,'parent_folder_id':document_parent_0.id})
                 all_subfolders1=self.env['documents.folder'].search([('parent_folder_id','=',i.id)])
                 if t==1:
                     all_subfolders1=all_subfolders1[:1]
@@ -111,27 +111,27 @@ class DocumentFolder(models.Model):
                             document_parent_2=document_folder.create({'name':self.project_name,'parent_folder_id':document_parent_1.id})
                         else:
                             document_parent_2=document_folder.create({'name':j.name,'parent_folder_id':document_parent_1.id})
-                        all_subfolders2=self.env['documents.folder'].search([('id','=',j.id)])
+                        all_subfolders2=self.env['documents.folder'].search([('parent_folder_id','=',j.id)])
                         if len(all_subfolders2)!=0:
                             for k in all_subfolders2:
                                 document_folder=self.env['documents.folder']
                                 document_parent_3=document_folder.create({'name':k.name,'parent_folder_id':document_parent_2.id})
-                                all_subfolders3=self.env['documents.folder'].search([('id','=',k.id)])
+                                all_subfolders3=self.env['documents.folder'].search([('parent_folder_id','=',k.id)])
                                 if len(all_subfolders3)!=0:
                                     for m in all_subfolders3:
                                         document_folder=self.env['documents.folder']
                                         document_parent_4=document_folder.create({'name':m.name,'parent_folder_id':document_parent_3.id})
-                                        all_subfolders4=self.env['documents.folder'].search([('id','=',m.id)])
+                                        all_subfolders4=self.env['documents.folder'].search([('parent_folder_id','=',m.id)])
                                         if len(all_subfolders4)!=0:
                                             for w in all_subfolders4:
                                                 document_folder=self.env['documents.folder']
                                                 document_parent_5=document_folder.create({'name':w.name,'parent_folder_id':document_parent_4.id})
-                                                all_subfolders5=self.env['documents.folder'].search([('id','=',w.id)])
+                                                all_subfolders5=self.env['documents.folder'].search([('parent_folder_id','=',w.id)])
                                                 if len(all_subfolders5)!=0:
                                                     for x in all_subfolders5:
                                                         document_folder=self.env['documents.folder']
                                                         document_parent_6=document_folder.create({'name':x.name,'parent_folder_id':document_parent_5.id})
-                                                        all_subfolders6=self.env['documents.folder'].search([('id','=',x.id)])
+                                                        all_subfolders6=self.env['documents.folder'].search([('parent_folder_id','=',x.id)])
                                                         if len(all_subfolders6)!=0:
                                                             for r in all_subfolders6:
                                                                 document_folder=self.env['documents.folder']
