@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 class DocumentFolder(models.Model):
     _description = 'Document folder'
     _inherit = 'documents.folder' 
@@ -51,10 +51,10 @@ class DocumentFolder(models.Model):
                 'res_id': self.id,
                 'target': 'new'}
     def inherit_workspace(self):
-        main_workspace_id=self.env['documents.folder'].search([('id','=',self.id)]).id
+        main_workspace_id=self.env['documents.folder'].search([('id','=',self.id)])
         document_folder=self.env['documents.folder']
-        all_subfolders_00=self.env['documents.folder'].search([('parent_folder_id','=',main_workspace_id)])
-        document_parent_0=document_folder.create({'name':self.project_name,'parent_folder_id':main_workspace_id})
+        all_subfolders_00=self.env['documents.folder'].search([('parent_folder_id','=',main_workspace_id.id)])
+        document_parent_0=document_folder.create({'name':self.project_name,'sequence':main_workspace_id.sequence+1,'parent_folder_id':main_workspace_id.id})
         document_parent_00=all_subfolders_00[0]
         all_subfolders0=self.env['documents.folder'].search([('parent_folder_id','=',document_parent_00.id)])
         if len(all_subfolders0)!=0:
@@ -62,6 +62,7 @@ class DocumentFolder(models.Model):
                 document_folder=self.env['documents.folder']
                 document_parent_1=document_folder.create({'name':i.name,'sequence':i.sequence,'parent_folder_id':document_parent_0.id})
                 all_subfolders1=self.env['documents.folder'].search([('parent_folder_id','=',i.id)])
+                raise UserError(_(all_subfolders1))
                 if len(all_subfolders1)!=0:
                     for j in all_subfolders1:
                         document_folder=self.env['documents.folder']
