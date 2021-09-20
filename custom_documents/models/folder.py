@@ -33,6 +33,7 @@ class DocumentFolder(models.Model):
                 parent_folder_id=folder.parent_folder_id.id
                 #raise UserError(_(folder.group_ids))
                 parent_folder=self.env['documents.folder'].search([('id','=',parent_folder_id)])
+     
                 if folder.read_group_ids:
                     for id in [group.id for group in  folder.read_group_ids ]:
                         parent_folder.write({'read_group_ids':[(4,id)]})
@@ -139,6 +140,8 @@ class DocumentFolder(models.Model):
         return {'type': 'ir.actions.act_window_close'}                        
     def delete_folders(self):
         self.env.cr.execute("""delete from documents_folder where create_date > (select NOW() - interval '1' hour)""")
+    def delete_sign_archive():
+        self.env.cr.execute("""delete from sign_template where active=False""")
 """class SignSendRequest(models.Model):
     _description = 'Sign Send Request'
     _inherit = 'sign.send.request' """
