@@ -140,7 +140,7 @@ class DocumentFolder(models.Model):
         return {'type': 'ir.actions.act_window_close'}                        
     def delete_folders(self):
         self.env.cr.execute("""delete from documents_folder where create_date > (select NOW() - interval '1' hour)""")
-    def delete_sign_archive():
+    def delete_sign_archive(self):
         self.env.cr.execute("""delete from sign_template where active=False""")
 """class SignSendRequest(models.Model):
     _description = 'Sign Send Request'
