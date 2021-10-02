@@ -152,6 +152,7 @@ class DocumentFolder(models.Model):
                 new_document_workflow_rule=document_workflow_rule.create({'name':'Demander une signature','domain_folder_id':folder.id,
                                                                       'condition_type':'domain','domain':'[["mimetype","ilike","pdf"]]',
                                                                      'create_model':'sign.template.direct'})
+                
         return()
  
 
