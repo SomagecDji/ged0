@@ -154,10 +154,6 @@ class DocumentFolder(models.Model):
                                                                      'create_model':'sign.template.direct'})
         return()
     
-    
-"""class SignSendRequest(models.Model):
-    _description = 'Sign Send Request'
-    _inherit = 'sign.send.request' """
 
 
 
