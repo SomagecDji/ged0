@@ -153,5 +153,9 @@ class DocumentFolder(models.Model):
                                                                       'condition_type':'domain','domain':'[["mimetype","ilike","pdf"]]',
                                                                      'create_model':'sign.template.direct'})     
         return()
+    
+    
+    
+    
  
 
