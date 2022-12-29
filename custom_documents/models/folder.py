@@ -7,7 +7,7 @@ class DocumentFolder(models.Model):
     admin_group_ids = fields.Many2many('res.groups',  'documents_folder_admin_groups',string="Groupe d'écriture")
     project_name=fields.Char('Nom du projet')
     country_name=fields.Char('Nom du pays')
-    @api.onchange('parent_folder_id')
+    '''@api.onchange('parent_folder_id')
     def inherit_groups_write(self):
         if self.parent_folder_id:
             id_temp=self.parent_folder_id.id
@@ -24,7 +24,7 @@ class DocumentFolder(models.Model):
                 for id in [group.id for group in  parent_folder.read_group_ids ]:
                     self.write({'read_group_ids':[(4,id)]})
     group_ids=fields.Many2many('res.groups', onchange=inherit_groups_write)
-    read_group_ids=fields.Many2many('res.groups', onchange=inherit_groups_read)
+    read_group_ids=fields.Many2many('res.groups', onchange=inherit_groups_read)'''
     active=fields.Boolean('Active', default=True)
     def custom_groups(self):
         folders=self.env['documents.folder'].search([])
