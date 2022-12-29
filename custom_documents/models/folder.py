@@ -25,6 +25,7 @@ class DocumentFolder(models.Model):
                     self.write({'read_group_ids':[(4,id)]})
     group_ids=fields.Many2many('res.groups', onchange=inherit_groups_write)
     read_group_ids=fields.Many2many('res.groups', onchange=inherit_groups_read)'''
+    
     active=fields.Boolean('Active', default=True)
     def custom_groups(self):
         folders=self.env['documents.folder'].search([])
